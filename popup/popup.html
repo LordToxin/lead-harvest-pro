@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LeadHarvest Pro</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-name">LeadHarvest <span class="badge-pro">PRO</span></span>
+      </div>
+      <div class="stats-badge" id="stats-counter">0 Leads</div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-capture">⚡ Capture</button>
+      <button class="tab-btn" data-tab="tab-leads">👥 Saved Leads (<span id="leads-count-tab">0</span>)</button>
+      <button class="tab-btn" data-tab="tab-settings">⚙️ Settings</button>
+    </nav>
+
+    <!-- TAB 1: Live Capture -->
+    <section id="tab-capture" class="tab-content active">
+      <div class="card capture-card">
+        <div class="card-title">Live Page Detection</div>
+        <p class="card-desc">Extract contact details, role, and company from the active browser tab.</p>
+        <button id="btn-detect-lead" class="btn btn-primary btn-block">
+          <span>🔍 Detect & Capture Lead</span>
+        </button>
+      </div>
+
+      <div id="capture-preview" class="capture-preview-box hidden">
+        <div class="preview-header">
+          <span class="preview-title">Detected Profile</span>
+          <span id="detected-source-tag" class="source-tag">LinkedIn</span>
+        </div>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="prev-name" class="input-field" placeholder="Full Name">
+        </div>
+        <div class="form-group">
+          <label>Headline / Role</label>
+          <input type="text" id="prev-headline" class="input-field" placeholder="e.g. Senior Software Engineer">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label>Company</label>
+            <input type="text" id="prev-company" class="input-field" placeholder="Company">
+          </div>
+          <div class="form-group col-half">
+            <label>Location</label>
+            <input type="text" id="prev-location" class="input-field" placeholder="Location">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-half">
+            <label>Email</label>
+            <input type="email" id="prev-email" class="input-field" placeholder="Email address">
+          </div>
+          <div class="form-group col-half">
+            <label>Phone</label>
+            <input type="text" id="prev-phone" class="input-field" placeholder="Phone number">
+          </div>
+        </div>
+        <button id="btn-save-detected" class="btn btn-success btn-block">
+          💾 Save to Leads Database
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB 2: Saved Leads -->
+    <section id="tab-leads" class="tab-content">
+      <div class="leads-toolbar">
+        <input type="text" id="lead-search-input" class="search-field" placeholder="🔍 Search by name, company, role...">
+        <div class="export-actions">
+          <button id="btn-export-csv" class="btn btn-sm btn-outline" title="Export CSV for Excel / Google Sheets">📥 CSV</button>
+          <button id="btn-export-json" class="btn btn-sm btn-outline" title="Export raw JSON">📄 JSON</button>
+          <button id="btn-clear-leads" class="btn btn-sm btn-danger-outline" title="Clear All Leads">🗑️</button>
+        </div>
+      </div>
+
+      <div id="leads-list-container" class="leads-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- TAB 3: Settings & Webhooks -->
+    <section id="tab-settings" class="tab-content">
+      <div class="card">
+        <div class="card-title">🔗 Webhook CRM Integration</div>
+        <p class="card-desc">Automatically forward captured leads in real-time to your CRM, Zapier, Make.com, or n8n workflow.</p>
+        
+        <div class="form-group">
+          <label>Webhook Endpoint URL</label>
+          <input type="url" id="webhook-url-input" class="input-field" placeholder="https://hooks.zapier.com/hooks/catch/...">
+        </div>
+
+        <div class="btn-group">
+          <button id="btn-save-webhook" class="btn btn-primary">Save Webhook</button>
+          <button id="btn-test-webhook" class="btn btn-secondary">Test Connection</button>
+        </div>
+        <div id="webhook-status" class="status-msg"></div>
+      </div>
+
+      <div class="card info-card">
+        <div class="card-title">💡 Pro Tips & Monetization</div>
+        <p class="text-muted">Use LeadHarvest Pro to build qualified B2B prospect lists for cold email outreach, LinkedIn outreach, and talent recruiting.</p>
+      </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="popup-toast" class="popup-toast"></div>
+  </div>
+
+  <script src="../scripts/extractor.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "lead-harvest-pro",
+  "version": "1.0.0",
+  "description": "Commercial Chrome Extension Manifest V3 for B2B Lead Scraping & CRM Webhook Sync",
+  "main": "scripts/background.js",
+  "scripts": {
+    "test": "node test-runner.js",
+    "package": "node package-extension.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "lead-generation",
+    "b2b",
+    "scraper",
+    "linkedin-extractor",
+    "sales-automation"
+  ],
+  "author": "Autonomous Product Engineer",
+  "license": "MIT"
+}

@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "LeadHarvest Pro - B2B Lead Finder & CRM Sync",
+  "version": "1.0.0",
+  "description": "1-Click B2B lead generation & profile scraper with instant CSV export and webhook CRM sync for LinkedIn and web profiles.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.linkedin.com/*",
+        "https://*.twitter.com/*",
+        "https://*.x.com/*",
+        "https://*.github.com/*"
+      ],
+      "js": [
+        "scripts/extractor.js",
+        "scripts/content.js"
+      ],
+      "css": [
+        "scripts/content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
